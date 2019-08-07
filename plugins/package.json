@@ -1,0 +1,10 @@
+{
+    "name": "available-plugins",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "@dblk/autopilot": "^1.0.0",
+        "@dblk/configloader": "^1.0.3",
+        "@dblk/recorder": "^1.0.1"
+    }
+}

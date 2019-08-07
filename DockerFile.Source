@@ -1,0 +1,26 @@
+FROM node:10-alpine
+
+WORKDIR /app
+
+COPY ./package*.json .
+
+RUN npm i --production
+
+# Plugins specific
+COPY plugins ./plugins
+WORKDIR /app/plugins
+RUN npm i --production
+WORKDIR /app
+
+COPY bin ./bin
+COPY lib ./lib
+# RUN chmod +x ./bin/cicp.js
+RUN npm link
+
+ENV DEBUG=
+ENV LOGGER_PRETTY=true
+ENV LOGGER_LEVEL=info
+
+EXPOSE 8080
+
+ENTRYPOINT ["cicp"]

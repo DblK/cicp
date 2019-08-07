@@ -1,0 +1,45 @@
+digraph G {
+	subgraph cluster_1 {
+		node [style=filled];
+		autopilot -> configLoader
+		configLoader -> recorder;
+		label = "Plugins onRequest";
+		color=blue
+	}
+	subgraph cluster_2 {
+		node [style=filled];
+		RealQuery -> RealAnswer;
+		label = "Forward Query";
+		color=blue
+	}
+	subgraph cluster_3 {
+		node [style=filled];
+		recorderReponse
+		label = "Plugins onResponse";
+		color=blue
+	}
+	
+	recorder -> RealQuery;
+
+	Query [shape=Msquare];
+	Query -> index;
+
+	index -> yamp;
+
+	yamp -> hasOnRequestHandler;
+	hasOnRequestHandler [shape=Mdiamond]
+	hasOnRequestHandler -> autopilot;
+	hasOnRequestHandler -> RealQuery
+
+	hasOnResponseHandler [shape=Mdiamond]
+	RealAnswer -> hasOnResponseHandler;
+	hasOnResponseHandler -> recorderReponse
+
+	hasOnResponseHandler -> Response;
+	recorderReponse -> Response
+
+	recorder -> Response
+
+
+	Response [shape=Msquare];
+}

@@ -1,0 +1,80 @@
+{
+  "name": "@dblk/cicp",
+  "version": "0.9.0",
+  "description": "NodeJS Proxy (HTTP/HTTPS) with Record/Replay Capabilites useful for CI environment",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./bin/cicp.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "DEBUG=cicp:*,yamp:*,cicp:* LOGGER_PRETTY=true LOGGER_LEVEL=debug ./node_modules/.bin/nodemon ./bin/cicp.js -l",
+    "lint": "./node_modules/.bin/eslint lib test",
+    "lint:fix": "./node_modules/.bin/eslint lib test --fix",
+    "schema": "node graph/graph.js",
+    "doc": "npx jsdoc --package package.json -c jsdoc.json",
+    "docker:build": "docker build -f DockerFile.Source -t cicp .",
+    "docker:launch": "docker run -p 8080:8080 --name replay-proxy cicp"
+  },
+  "author": {
+    "name": "Remy Boulanouar",
+    "email": "admin@dblk.org"
+  },
+  "bugs": {
+    "url": "https://github.com/dblk/cicp/issues"
+  },
+  "homepage": "https://github.com/dblk/cicp#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dblk/cicp.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@dblk/yamp": "^1.0.0",
+    "architect": "^0.1.13",
+    "async": "^2.6.2",
+    "commander": "^2.19.0",
+    "debug": "^4.1.1",
+    "figlet": "^1.2.1",
+    "mime-types": "^2.1.22",
+    "pino": "^5.11.1",
+    "pino-pretty": "^2.5.0"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "cicp": "./bin/cicp.js"
+  },
+  "devDependencies": {
+    "eslint": "4.17.0",
+    "eslint-config-airbnb-base": "12.1.0",
+    "eslint-plugin-import": "2.8.0",
+    "jsdoc": "~3.5.5",
+    "nodemon": "1.12.1",
+    "viz.js": "^2.1.2"
+  },
+  "keywords": [
+    "mitm",
+    "http",
+    "https",
+    "ssl",
+    "websocket",
+    "proxy",
+    "record",
+    "replay",
+    "ci",
+    "cicp",
+    "yamp"
+  ],
+  "engines": {
+    "node": "~10.15.3"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "lib/",
+      "bin/",
+      "plugins/"
+    ],
+    "ignore": [
+      "plugins/available.js"
+    ],
+    "ext": "js"
+  }
+}

@@ -1,0 +1,18 @@
+FROM node:10-alpine
+
+WORKDIR /app
+
+COPY ./plugins/package.json ./plugins
+WORKDIR /app/plugins
+RUN npm i --production
+WORKDIR /app
+
+RUN npm -g cicp
+
+ENV DEBUG=
+ENV LOGGER_PRETTY=true
+ENV LOGGER_LEVEL=info
+
+EXPOSE 8080
+
+ENTRYPOINT ["cicp"]
