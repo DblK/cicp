@@ -1,6 +1,6 @@
 {
   "name": "@dblk/cicp",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "NodeJS Proxy (HTTP/HTTPS) with Record/Replay Capabilites useful for CI environment",
   "main": "index.js",
   "scripts": {
@@ -28,7 +28,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@dblk/yamp": "^1.0.0",
+    "@dblk/yamp": "^1.0.4",
     "architect": "^0.1.13",
     "async": "^2.6.4",
     "commander": "^2.19.0",
